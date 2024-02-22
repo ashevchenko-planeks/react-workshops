@@ -1,11 +1,12 @@
-import {FC, useState} from "react";
+import {FC, useContext, useState} from "react";
 import {Video} from "../index.tsx";
-import {momentAgo} from "../../../utils/moment-ago.ts";
-import {shorthandNumber} from "../../../utils/shorthand-number.ts";
+import {momentAgo} from "@/utils/moment-ago.ts";
+import {shorthandNumber} from "@/utils/shorthand-number.ts";
+import { CurrentUserContext } from "@/context/CurrentUserContext.tsx";
 
 const VideoItem: FC<Video> = ({title, preview, views, uploaded, chanel, quality}) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-
+    const {user} = useContext(CurrentUserContext)
     return (
         <div className="relative">
             <img className="rounded-2xl" src={preview} alt={`${title} preview`}/>
@@ -38,7 +39,7 @@ const VideoItem: FC<Video> = ({title, preview, views, uploaded, chanel, quality}
                 {isDropdownOpen && (
                     <ul className="flex gap-2 flex-col absolute right-0 z-[2] -bottom-12 bg-[#1d232a] px-4 py-2 rounded w-32">
                         <li className="cursor-pointer">Save</li>
-                        <li className="text-red-400 cursor-pointer">Delete</li>
+                        {user.role === 'admin' && <li className="text-red-400 cursor-pointer">Delete</li>}
                     </ul>
                 )}
             </div>

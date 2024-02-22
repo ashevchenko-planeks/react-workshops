@@ -1,23 +1,19 @@
-import Sidebar from "../../components/Sidebar.tsx";
-import {useEffect, useState} from "react";
-import {User} from "../../interfaces/user.ts";
-import {admin} from "../../dummy/user.ts";
+import Sidebar from "@/components/Sidebar.tsx";
+import {useContext,  useState} from "react";
+import { CurrentUserContext } from "@/context/CurrentUserContext";
 
 const Profile = () => {
-    const [user, setUser] = useState<User>()
+    const {user} = useContext(CurrentUserContext)
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [role, setRole] = useState('viewer')
 
-    useEffect(() => {
-        setUser(admin)
-    }, []);
 
     return (
         <div className="grid grid-cols-12 min-h-screen">
             <div className="col-span-2">
-                {user && <Sidebar user={user} setUser={setUser}/>}
+                {user && <Sidebar />}
             </div>
             <div className="col-span-10">
                 <div className="p-20">

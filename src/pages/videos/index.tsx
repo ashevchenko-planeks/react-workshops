@@ -1,9 +1,8 @@
 import {faker} from "@faker-js/faker";
-import {ChangeEvent, useEffect, useState} from "react";
-import {User} from "../../interfaces/user.ts";
-import {admin} from "../../dummy/user.ts";
-import Sidebar from "../../components/Sidebar.tsx";
+import {ChangeEvent, useContext, useEffect, useState} from "react";
+import Sidebar from "@/components/Sidebar.tsx";
 import VideosList from "./components/VideosList.tsx";
+import { CurrentUserContext } from "../../context/CurrentUserContext.tsx";
 
 export interface Video {
     id: string
@@ -36,12 +35,7 @@ const Videos = () => {
     const [searchCriteria, setSearchCriteria] = useState('')
     const [sortCriteria, setSortCriteria] = useState<'date' | 'popular'>("date")
     const [mood, setMood] = useState('Joyful')
-
-    const [user, setUser] = useState<User>()
-
-    useEffect(() => {
-        setUser(admin)
-    }, []);
+    const user = useContext(CurrentUserContext);
 
     useEffect(() => {
         setVideos(createVideos())
@@ -66,7 +60,7 @@ const Videos = () => {
     return (
         <div className="grid grid-cols-12 min-h-screen">
             <div className="col-span-2">
-                {user && <Sidebar user={user} setUser={setUser}/>}
+                {user && <Sidebar  />}
             </div>
             <div className="col-span-10">
                 <div className="p-10">
