@@ -11,6 +11,8 @@ import Callback from "./pages/callback";
 import Videos from "./pages/videos";
 import Profile from "./pages/profile";
 import {ConfirmationDialogProvider} from "./context/ConfrimationDialogContext.tsx";
+import Decomposition from "./pages/decomposition";
+import DecompositionHomeWork from "./pages/decomposition/homework";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +26,18 @@ const router = createBrowserRouter([
     {
         path: "/profile",
         element: <Profile />,
+    },
+    {
+        path: "/decomposition",
+        element: <Decomposition />,
+    },
+    {
+        path: "/form-decomposition",
+        element: <Decomposition />,
+    },
+    {
+        path: "/decomposition-homework",
+        element: <DecompositionHomeWork />,
     },
     {
         path: "/",

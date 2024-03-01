@@ -28,3 +28,5 @@ You have to create a page where you will render this Table component and add col
 By clicking on "Edit" button you should open dialog with form, with prefilled form. Any other logic you can implement if you want
 By clicking on "Delete" button you should open dialog that will ask user "Are you sure you wanna delete {ProductName (or some other field that you like)}". By clicking "Delete" or "Cancel" just close dialog
 
+
+const matches = useMediaQuery('(min-width: 1024px)')
